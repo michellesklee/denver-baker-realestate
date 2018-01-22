@@ -65,8 +65,7 @@ Query OK, 1 row affected (0.01 sec)
 
 mysql> insert into baker_realestate values ('6', '446', 'delaware', '400000', '400000', '2017-09-15', '2017-11-07', '1422', '4', '2', '1901');
 Query OK, 1 row affected (0.00 sec)
-
-mysql> 
+ 
 mysql> insert into baker_realestate values ('7', '519', 'galapago', '415000', '430000', '2017-09-15', '2017-11-21', '1175', '3', '2', '1901');
 Query OK, 1 row affected (0.01 sec)
 
