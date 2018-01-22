@@ -57,8 +57,6 @@ Query OK, 1 row affected (0.00 sec)
 mysql> insert into baker_realestate values ('3', '722', '2nd', '274000', '270000', '2017-10-25', '2017-11-29', '697', '2', '1', '1901');
 Query OK, 1 row affected (0.00 sec)
 
-mysql> nsert into baker_realestate values ('4', '604', 'inca', '250000', '220000', '2017-10-12', '2017-11-16', '887', '2', '1', '1901');
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'nsert into baker_realestate values ('4', '604', 'inca', '250000', '220000', '201' at line 1
 mysql> insert into baker_realestate values ('4', '604', 'inca', '250000', '220000'
 Query OK, 1 row affected (0.00 sec)
 
