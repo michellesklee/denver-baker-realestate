@@ -3,19 +3,16 @@ mysql> use denver;
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
 
-Database changed
-mysql> show tables;
-+------------------+
-| Tables_in_denver |
-+------------------+
-| baker_realestate |
-+------------------+
-1 row in set (0.00 sec)
+#this is how I imported a csv file with real estate data to MySQL
 
-#first create new table with column names
+#first create new table with appropriate column names
 
 mysql> create table baker_realestate2 (id INT, streetnumber INT, streetname TEXT, listprice INT, soldprice INT, listdate DATE, solddate DATE, sqft INT, bedroom INT, bathroom INT, yearbuilt YEAR);
 Query OK, 0 rows affected (0.37 sec)
+
+#this is the query to load a local data file to MySQL
+#I edited the .csv file in Excel to delete the first row and made the date in YYYY-MM-DD format to be consistent with SQL
+#I also replaced null values with \N in Excel
 
 mysql> LOAD DATA LOCAL INFILE '/Users/michellelee/Desktop/development/baker_realestate2.csv' INTO TABLE baker_realestate2 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\r';
 Query OK, 90 rows affected (0.11 sec)
@@ -117,4 +114,4 @@ mysql> select * from baker_realestate2;                                         
 +---------+--------------+------------+-----------+-----------+------------+------------+------+---------+----------+-----------+
 90 rows in set (0.00 sec)
 
-mysql> 
+#fyi, the value 1901 in yearbuilt means that the house was built on or before 1901 because SQL doesn't support years before then.
