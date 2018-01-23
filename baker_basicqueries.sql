@@ -1,19 +1,3 @@
-Last login: Tue Jan 23 12:46:56 on ttys000
-Michelles-MacBook-Pro:~ michellelee$ cd /usr/local/mysql/bin
-Michelles-MacBook-Pro:bin michellelee$ ./mysql -u root -p
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 24
-Server version: 5.7.17 MySQL Community Server (GPL)
-
-Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
 mysql> use denver;
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
@@ -28,7 +12,8 @@ mysql> show tables;
 +-------------------+
 2 rows in set (0.00 sec)
 
-mysql> #select distince street names
+#select distinct to list the street names in the baker neighborhood database
+
 mysql> SELECT DISTINCT streetname FROM baker_realestate2;
 +------------+
 | streetname |
@@ -49,8 +34,8 @@ mysql> SELECT DISTINCT streetname FROM baker_realestate2;
 +------------+
 13 rows in set (0.06 sec)
 
-mysql> #these are the street names in the baker neighborhood
-mysql> 
+#select cases where the sold price was over $300,000
+
 mysql> SELECT * from baker_realestate2 WHERE soldprice > 300000;
 +---------+--------------+------------+-----------+-----------+------------+------------+------+---------+----------+-----------+
 | id      | streetnumber | streetname | listprice | soldprice | listdate   | solddate   | sqft | bedroom | bathroom | yearbuilt |
@@ -128,8 +113,8 @@ mysql> SELECT * from baker_realestate2 WHERE soldprice > 300000;
 +---------+--------------+------------+-----------+-----------+------------+------------+------+---------+----------+-----------+
 70 rows in set (0.05 sec)
 
-mysql> mysql> SELECT * from baker_realestate2 WHERE soldprice > 300000 AND streetname = galapago;
-ERROR 1054 (42S22): Unknown column 'galapago' in 'where clause'
+#select cases where sold price was over $300,000 on Galapago St. 
+
 mysql> SELECT * from baker_realestate2 WHERE soldprice > 300000 AND streetname = "galapago";
 +---------+--------------+------------+-----------+-----------+------------+------------+------+---------+----------+-----------+
 | id      | streetnumber | streetname | listprice | soldprice | listdate   | solddate   | sqft | bedroom | bathroom | yearbuilt |
@@ -199,6 +184,7 @@ mysql> SELECT AVG(soldprice) FROM baker_realestate2 WHERE streetname = "galapago
 +----------------+
 1 row in set (0.00 sec)
 
+#what is the average sold price for houses on 2nd Ave. (i.e., streetnumber starts with 2)
 mysql> SELECT AVG(soldprice) FROM baker_realestate2 WHERE streetnumber LIKE '2%';
 +----------------+
 | AVG(soldprice) |
@@ -207,8 +193,6 @@ mysql> SELECT AVG(soldprice) FROM baker_realestate2 WHERE streetnumber LIKE '2%'
 +----------------+
 1 row in set (0.03 sec)
 
-mysql> SELECT AVG(soldprice) FROM baker_realestate2 WHERE streetnumber LIKE '2%' AND streename = "galapago";
-ERROR 1054 (42S22): Unknown column 'streename' in 'where clause'
 mysql> SELECT AVG(soldprice) FROM baker_realestate2 WHERE streetnumber LIKE '2%' AND streetname = "galapago";
 +----------------+
 | AVG(soldprice) |
@@ -216,6 +200,9 @@ mysql> SELECT AVG(soldprice) FROM baker_realestate2 WHERE streetnumber LIKE '2%'
 |    294833.3333 |
 +----------------+
 1 row in set (0.00 sec)
+
+#based on the above 2 queries, the average sold price on 2nd & Galapago ($294,833) is lower than the average sold price on 2nd Ave.
+
 
 mysql> SELECT streetnumber, streetname, soldprice, solddate FROM baker_realestate2 ORDER BY streetname ASC;
 +--------------+------------+-----------+------------+
